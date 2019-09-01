@@ -7,6 +7,17 @@ var helmet = require("helmet");
 var session = require("express-session");
 var passport = require("passport");
 
+var User = require("./models/user");
+var KtmData = require("./models/ktm-data");
+var Patient = require("./models/patient");
+
+User.sync().then(() => {
+  KtmData.belongsTo(User, { foreignKey: "userId" });
+  KtmData.sync();
+  Patient.belongsTo(User, { foreignKey: "userId" });
+  Patient.sync();
+});
+
 var GitHubStrategy = require("passport-github2").Strategy;
 var GITHUB_CLIENT_ID = "454dd779902dd97824b5";
 var GITHUB_CLIENT_SECRET = "fc10b44be8fc4880e81ad11448f8e5eb13c71f83";
@@ -28,7 +39,12 @@ passport.use(
     },
     function(accessToken, refreshToken, profile, done) {
       process.nextTick(function() {
-        return done(null, profile);
+        User.upsert({
+          userId: profile.id,
+          userName: profile.username
+        }).then(() => {
+          done(null, profile);
+        });
       });
     }
   )
