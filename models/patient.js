@@ -7,6 +7,7 @@ const Patient = loader.database.define(
   {
     patientID: {
       type: Sequelize.STRING,
+      primaryKey: true,
       allowNull: false
     },
     patientFName: {
