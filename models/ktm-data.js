@@ -72,11 +72,6 @@ const KtmData = loader.database.define(
     },
     userId: {
       type: Sequelize.INTEGER,
-      primaryKey: true,
-      allowNull: false
-    },
-    userId: {
-      type: Sequelize.INTEGER,
       allowNull: false
     },
     createdAt: {
