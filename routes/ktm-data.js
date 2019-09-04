@@ -10,8 +10,12 @@ router.get("/new", authenticationEnsurer, (req, res, next) => {
 });
 
 router.post("/", authenticationEnsurer, (req, res, next) => {
-  console.log(req.body);
-  res.redirect("/");
+  const ktmDataId = uuid.v4();
+  const updatedAt = new Date();
+
+  console.log(ktmDataId);
+  console.log(updatedAt);
+  console.log(req.body.examinationDate);
 });
 
 module.exports = router;
