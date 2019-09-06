@@ -50,7 +50,7 @@ passport.use(
 var indexRouter = require("./routes/index");
 var loginRouter = require("./routes/login");
 var logoutRouter = require("./routes/logout");
-var ktmScoreRouter = require("./routes/ktmScore");
+var ktmScoreRouter = require("./routes/ktmScores");
 
 var app = express();
 app.use(helmet());
@@ -78,7 +78,7 @@ app.use(passport.session());
 app.use("/", indexRouter);
 app.use("/login", loginRouter);
 app.use("/logout", logoutRouter);
-app.use("/ktmScore", ktmScoreRouter);
+app.use("/ktmScores", ktmScoreRouter);
 
 app.get(
   "/auth/github",
