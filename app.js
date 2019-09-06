@@ -8,14 +8,11 @@ var session = require("express-session");
 var passport = require("passport");
 
 var User = require("./models/user");
-var KtmData = require("./models/ktm-data");
-var Patient = require("./models/patient");
+var KtmScore = require("./models/ktmScore");
 
 User.sync().then(() => {
-  KtmData.belongsTo(User, { foreignKey: "userId" });
-  KtmData.sync();
-  Patient.belongsTo(User, { foreignKey: "userId" });
-  Patient.sync();
+  KtmScore.belongsTo(User, { foreignKey: "createdBy" });
+  KtmScore.sync();
 });
 
 var GitHubStrategy = require("passport-github2").Strategy;
@@ -53,7 +50,7 @@ passport.use(
 var indexRouter = require("./routes/index");
 var loginRouter = require("./routes/login");
 var logoutRouter = require("./routes/logout");
-var ktmdataRouter = require("./routes/ktm-data");
+var ktmScoreRouter = require("./routes/ktmScore");
 
 var app = express();
 app.use(helmet());
@@ -81,7 +78,7 @@ app.use(passport.session());
 app.use("/", indexRouter);
 app.use("/login", loginRouter);
 app.use("/logout", logoutRouter);
-app.use("/ktm-data", ktmdataRouter);
+app.use("/ktmScore", ktmScoreRouter);
 
 app.get(
   "/auth/github",

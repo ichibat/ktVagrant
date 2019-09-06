@@ -2,10 +2,10 @@
 const loader = require("./sequelize-loader");
 const Sequelize = loader.Sequelize;
 
-const KtmData = loader.database.define(
-  "datas",
+const KtmScore = loader.database.define(
+  "ktmScores",
   {
-    ktmDataId: {
+    ktmScoreId: {
       type: Sequelize.UUID,
       primaryKey: true,
       allowNull: false
@@ -70,14 +70,6 @@ const KtmData = loader.database.define(
       type: Sequelize.INTEGER,
       allowNull: false
     },
-    userId: {
-      type: Sequelize.INTEGER,
-      allowNull: false
-    },
-    createdAt: {
-      type: Sequelize.DATE,
-      allowNull: false
-    },
     updatedAt: {
       type: Sequelize.DATE,
       allowNull: false
@@ -94,4 +86,4 @@ const KtmData = loader.database.define(
   }
 );
 
-module.exports = KtmData;
+module.exports = KtmScore;
