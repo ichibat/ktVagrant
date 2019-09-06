@@ -16,6 +16,7 @@ router.post("/", authenticationEnsurer, (req, res, next) => {
   console.log(ktmScoreId);
   console.log(updatedAt);
   console.log(req.body.examinationDate);
+  console.log(req.user);
 });
 
 module.exports = router;
