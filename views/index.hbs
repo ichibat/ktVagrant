@@ -1,8 +1,23 @@
 <h1>{{title}}</h1>
 <p>Welcome to {{title}}</p>
 <div> {{#if user}}
-  <a href="/logout">{{user.username}}をログアウト</a>
-  {{else}}
-  <a href="/login">ログイン</a>
-  {{/if}}
-</div>
+  <div>
+    <a href="/logout">{{user.username}}をログアウト</a>
+    <div>
+      <a href="/ktmScores/new">データを入力する</a>
+
+      <h3>あなたの入力したデータ一覧</h3>
+      <table>
+        <tr>
+          <th>患者さんID</th>
+          <th>更新日時</th>
+        </tr>
+        {{#each ktmScores}}
+        <tr>
+          <td>
+            <a href=`/ktmScores/${ktmScore.ktmScoreId}`>{{this.patientID}} </a>{{this.updatedAt}} {{/each}} </td> </tr>
+              </div> </table> {{else}} <div>
+              <a href="/login">ログイン</a>
+    </div>
+    {{/if}}
+  </div>

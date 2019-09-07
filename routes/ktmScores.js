@@ -38,6 +38,7 @@ router.post("/", authenticationEnsurer, (req, res, next) => {
     updatedAt: updatedAt
   }).then(ktmScore => {
     console.log(ktmScore.ktmScoreId);
+    console.log(ktmScore.Q1Value);
     console.log("reached internally!");
     res.redirect("/ktmScores/" + ktmScore.ktmScoreId);
   });
