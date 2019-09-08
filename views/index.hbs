@@ -15,9 +15,9 @@
         {{#each ktmScores}}
         <tr>
           <td>
-            <a href=`/ktmScores/${ktmScore.ktmScoreId}`>{{this.patientID}} </a>{{this.updatedAt}} {{/each}} </td> </tr>
-              </div> </table> {{else}} <div>
-              <a href="/login">ログイン</a>
+            <a href=""/ktmScores/:" + "{{this.ktmScoreId}}"">{{this.createdBy}} </a>{{this.updatedAt}} {{/each}}
+          </td>
+        </tr>
     </div>
-    {{/if}}
-  </div>
+    </table> {{else}} <div>
+      <a href="/login">ログイン </a> </div> {{/if}} </div>

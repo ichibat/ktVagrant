@@ -4,6 +4,7 @@ const router = express.Router();
 const authenticationEnsurer = require("./authentication-ensurer");
 const uuid = require("uuid");
 const KtmScore = require("../models/ktmScore");
+const User = require("../models/user");
 
 router.get("/new", authenticationEnsurer, (req, res, next) => {
   res.render("new", { user: req.user });
@@ -12,11 +13,6 @@ router.get("/new", authenticationEnsurer, (req, res, next) => {
 router.post("/", authenticationEnsurer, (req, res, next) => {
   const ktmScoreId = uuid.v4();
   const updatedAt = new Date();
-
-  console.log(ktmScoreId);
-  console.log(updatedAt);
-  console.log(req.body.examinationDate);
-  console.log(req.user);
 
   KtmScore.create({
     ktmScoreId: ktmScoreId,
@@ -41,6 +37,25 @@ router.post("/", authenticationEnsurer, (req, res, next) => {
     console.log(ktmScore.Q1Value);
     console.log("reached internally!");
     res.redirect("/ktmScores/" + ktmScore.ktmScoreId);
+  });
+});
+
+router.get("/:ktmScoreId", authenticationEnsurer, (req, res, next) => {
+  KtmScore.findOne({
+    include: [
+      {
+        model: User,
+        attributes: ["userId", "userName"]
+      }
+    ],
+    where: {
+      ktmScoreId: req.params.ktmScoreId
+    },
+    order: [['"updatedAt"', "DESC"]]
+  }).then(ktmScore => {
+    res.render("ktmScore", {
+      ktmScore: ktmScore
+    });
   });
 });
 
