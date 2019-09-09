@@ -41,6 +41,7 @@ router.post("/", authenticationEnsurer, (req, res, next) => {
 });
 
 router.get("/:ktmScoreId", authenticationEnsurer, (req, res, next) => {
+  console.log(req.params.ktmScoreId);
   KtmScore.findOne({
     include: [
       {
