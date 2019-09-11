@@ -60,4 +60,9 @@ router.get("/:ktmScoreId", authenticationEnsurer, (req, res, next) => {
   });
 });
 
+router.get("/:ktmScoreId/edit", authenticationEnsurer, (req, res, next) => {
+  console.log("simple message!");
+  res.send("I am here!");
+});
+
 module.exports = router;
