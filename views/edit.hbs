@@ -4,9 +4,9 @@
     これまで入力したスコアを編集しましょう．
   </legend>
 
-  <form action="/ktmScores" method="post">
+  <form action="/ktmScores/{{ktmScoreId}}?edit=1" method="post">
     <label for="ptID">患者さんのID</label>
-    <input type="text" name="patientID" id="ptID" />
+    <input type="text" name="patientID" value={{ktmScore.patientID}} id="ptID" />
     <br />
     <label for="fNameInitial">名(イニシャル)</label>
     <input type="text" name="firstNameInitial" id="fNameInitial" />
