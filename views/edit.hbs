@@ -9,18 +9,18 @@
     <input type="text" name="patientID" value={{ktmScore.patientID}} id="ptID" />
     <br />
     <label for="fNameInitial">名(イニシャル)</label>
-    <input type="text" name="firstNameInitial" id="fNameInitial" />
+    <input type="text" name="firstNameInitial" id="fNameInitial" value={{ktmScore.firstNameInitial}} />
     <label for="lNameInitial">姓(イニシャル)</label>
-    <input type="text" name="lastNameInitial" id="lNameInitial" />
+    <input type="text" name="lastNameInitial" id="lNameInitial" value={{ktmScore.lastNameInitial}} />
     <br />
     <label for="examDate">評価日
-      <input name="examinationDate" placeholder="検査年月日" id="examDate1" />
+      <input name="examinationDate" placeholder="検査年月日" id="examDate1" value={{ktmScore.examinationDate}} />
     </label>
     <br />
 
     <br />
     <label for="Q1">(1)食べる意欲</label><br />
-    <select name="question1" id="Q1" class="ktD1Data">
+    <select name="question1" id="Q1" class="ktD1Data" value={{ktmScore.Q1Value}}>
       <option value="0" selected>選択してください</option>
       <option value="1">1.促しや援助しても食べようとしない</option>
       <option value="2">2.促しや援助で少し食べる</option>
