@@ -62,7 +62,29 @@ router.get("/:ktmScoreId", authenticationEnsurer, (req, res, next) => {
 
 router.get("/:ktmScoreId/edit", authenticationEnsurer, (req, res, next) => {
   console.log("simple message!");
-  res.send("I am here!");
+  console.log(req.params.ktmScoreId);
+  KtmScore.findOne({
+    where: {
+      ktmScoreId: req.params.ktmScoreId
+    }
+  }).then(ktmScoreId => {
+    if (isMine(req, ktmScoreId)) {
+      // 作成者のみが編集フォームを開ける
+
+      res.render("edit", {
+        user: req.user,
+        ktmScoreId: ktmScoreId
+      });
+    } else {
+      const err = new Error("指定されたスコアがない、または権限がありません");
+      err.status = 404;
+      next(err);
+    }
+  });
 });
+
+function isMine(req, ktmScoreId) {
+  return ktmScoreId && parseInt(ktmScoreId.createdBy) === parseInt(req.user.id);
+}
 
 module.exports = router;
