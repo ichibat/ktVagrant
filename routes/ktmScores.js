@@ -91,13 +91,15 @@ function isMine(req, ktmScore) {
 }
 
 router.post("/:ktmScoreId", authenticationEnsurer, (req, res, next) => {
+  console.log("just below /:ktmScoreId");
   KtmScore.findOne({
     where: {
       ktmScoreId: req.params.ktmScoreId
     }
   }).then(ktmScore => {
-    if (ktmScore && isMine(req, ktmScoreId)) {
+    if (ktmScore && isMine(req, ktmScore)) {
       if (parseInt(req.query.edit) === 1) {
+        console.log("editing!");
         const updatedAt = new Date();
         ktmScore
           .update({
@@ -120,8 +122,12 @@ router.post("/:ktmScoreId", authenticationEnsurer, (req, res, next) => {
             updatedAt: updatedAt
           })
           .then(ktmScore => {
+            console.log("editing!editing!");
+            console.log(ktmScore.ktmScoreId);
             res.redirect("/ktmScores/" + ktmScore.ktmScoreId);
           });
+      } else if (parseInt(req.query.delete) === 1) {
+        console.log("delete!");
       } else {
         const err = new Error("不正なリクエストです");
         err.status = 400;

@@ -4,17 +4,18 @@
     これまで入力したスコアを編集しましょう．
   </legend>
 
-  <form action="/ktmScores/{{ktmScoreId}}?edit=1" method="post">
+  <form action="/ktmScores/{{ktmScore.ktmScoreId}}?edit=1" method="post">
+    <p>ktmScore.ktmScoreIdhaは{{ktmScore.ktmScoreId}}</p>
     <label for="ptID">患者さんのID</label>
     <input type="text" name="patientID" value={{ktmScore.patientID}} id="ptID" />
     <br />
     <label for="fNameInitial">名(イニシャル)</label>
-    <input type="text" name="firstNameInitial" id="fNameInitial" value={{ktmScore.firstNameInitial}} />
+    <input type="text" name="firstNameInitial" id="fNameInitial" />
     <label for="lNameInitial">姓(イニシャル)</label>
-    <input type="text" name="lastNameInitial" id="lNameInitial" value={{ktmScore.lastNameInitial}} />
+    <input type="text" name="lastNameInitial" id="lNameInitial" />
     <br />
     <label for="examDate">評価日
-      <input name="examinationDate" placeholder="検査年月日" id="examDate1" value={{ktmScore.examinationDate}} />
+      <input name="examinationDate" placeholder="検査年月日" id="examDate1" />
     </label>
     <br />
 
@@ -166,8 +167,11 @@
       <option value="5">5.栄養状態がとても良い</option>
     </select>
     <br />
-    <p>
-      <button type="submit">データ入力完了</button>
-    </p>
+
+    <button type="submit">データを以上のように編集する</button>
+  </form>
+  <h3>危険な変更</h3>
+  <form action="/ktmScores/{{ktmScore.ktmScoreId}}?delete=1" method="post">
+    <button type="submit">このデータを削除する</button>
   </form>
 </fieldset>
