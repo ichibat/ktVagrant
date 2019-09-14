@@ -1,6 +1,9 @@
-<h4>{{ktmScore.ktmScoreId}}</h4>
+<h4>これはktmScoreId{{ktmScore.ktmScoreId}}</h4>
 <p style="white-space:pre;">{{ktmScore.patientID}}</p>
 <p>作成者：{{ktmScore.createdBy}}</p>
+<div>
+  <a href="/ktmScores/{{ktmScore.ktmScoreId}}/edit">この予定を編集する．</a>
+</div>
 <h3>スコア</h3>
 <ul>
   <li>ktmScoreId: {{ktmScore.ktmScoreId}}</li>

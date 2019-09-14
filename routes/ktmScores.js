@@ -101,7 +101,7 @@ router.post("/:ktmScoreId", authenticationEnsurer, (req, res, next) => {
         const updatedAt = new Date();
         ktmScore
           .update({
-            ktmScoreId: ktmScoreId,
+            ktmScoreId: ktmScore.ktmScoreId,
             patientID: req.body.patientID.slice(0, 255) || "（未入力）",
             Q1Value: req.body.question1,
             Q2Value: req.body.question2,
