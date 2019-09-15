@@ -137,6 +137,16 @@ router.post("/:ktmScoreId", authenticationEnsurer, (req, res, next) => {
           ktmScore.destroy();
           res.redirect("/");
         });
+      } else if (parseInt(req.query.graph) === 1) {
+        console.log(req.params.ktmScoreId + "グラフだよね！");
+        KtmScore.findOne({
+          where: {
+            ktmScoreId: req.params.ktmScoreId
+          }
+        }).then(ktmScore => {
+          console.log("これをグラフにするよktmScore=" + ktmScore);
+          res.render("graph");
+        });
       } else {
         const err = new Error("不正なリクエストです");
         err.status = 400;

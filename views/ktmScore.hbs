@@ -25,4 +25,9 @@
   <li>updatedAt: {{ktmScore.updatedAt}}</li>
 </ul>
 
+<h3>グラフ化</h3>
+<form action="/ktmScores/{{ktmScore.ktmScoreId}}?graph=1" method="post">
+  <button type="submit">このデータをグラフ化する</button>
+</form>
+
 <p>test: {{ktmScore.user.userName}}</p>
