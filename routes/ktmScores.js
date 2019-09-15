@@ -127,7 +127,16 @@ router.post("/:ktmScoreId", authenticationEnsurer, (req, res, next) => {
             res.redirect("/ktmScores/" + ktmScore.ktmScoreId);
           });
       } else if (parseInt(req.query.delete) === 1) {
-        console.log("delete!");
+        console.log(req.params.ktmScoreId + "だよね！");
+        KtmScore.findOne({
+          where: {
+            ktmScoreId: req.params.ktmScoreId
+          }
+        }).then(ktmScore => {
+          console.log("これを削除するよktmScore=" + ktmScore);
+          ktmScore.destroy();
+          res.redirect("/");
+        });
       } else {
         const err = new Error("不正なリクエストです");
         err.status = 400;
