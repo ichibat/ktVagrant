@@ -145,7 +145,9 @@ router.post("/:ktmScoreId", authenticationEnsurer, (req, res, next) => {
           }
         }).then(ktmScore => {
           console.log("これをグラフにするよktmScore=" + ktmScore);
-          res.render("graph");
+          res.render("graph", {
+            ktmScore: ktmScore
+          });
         });
       } else {
         const err = new Error("不正なリクエストです");
